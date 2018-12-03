@@ -7,6 +7,17 @@ using Analyzer;
 namespace diconsole.Implementation {
     public class Server
     {
+
+#if false
+      /// <summary>
+      /// Implements ability to execute module reload on the analyzer thread
+      /// </summary>      
+      private sealed class ReloadModuleQueueItem : IAnalyzable
+      {
+          private readonly Server _server;
+      }
+#endif
+
       // If null all files must be added manually
       private string _rootDir;
       internal PythonAnalyzer Analyzer { get; private set; }

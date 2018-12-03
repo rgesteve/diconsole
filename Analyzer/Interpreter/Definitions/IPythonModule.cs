@@ -6,5 +6,7 @@ namespace Analyzer.Interpreter
     {
         string Name { get; }
 	IEnumerable<string> GetChildrenModules();
+	// void Imported(IModuleContext context);
+	string Documentation { get; }
     }
 }
