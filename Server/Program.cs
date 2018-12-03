@@ -12,7 +12,7 @@ namespace diconsole
 	    Console.WriteLine("Populating databases...");
 
 	    // Read JSON directly from a file
-	    JObject data = JObject.Parse(File.ReadAllText(@"data.json"));
+	    JObject data = JObject.Parse(File.ReadAllText(Path.Combine("..","data.json")));
 	    JToken processId = (JToken)data.SelectToken("processId");
 	    JToken capabilities = (JToken)data.SelectToken("capabilities");
 
