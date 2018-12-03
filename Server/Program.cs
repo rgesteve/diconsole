@@ -3,13 +3,17 @@ using System.IO;
 
 using Newtonsoft.Json.Linq;
 
+using Analyzer;
+
 namespace diconsole
 {
     class Program
     {
         static void Main(string[] args)
         {
-	    Console.WriteLine("Populating databases...");
+	    PythonAnalyzer pa = new PythonAnalyzer();
+	    Console.WriteLine($"An analyzer for language {PythonAnalyzer.PythonAnalysisSource}.");
+
 
 	    // Read JSON directly from a file
 	    JObject data = JObject.Parse(File.ReadAllText(Path.Combine("..","data.json")));
