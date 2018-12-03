@@ -3,16 +3,14 @@ using System.IO;
 
 using Newtonsoft.Json.Linq;
 
-using Analyzer;
-
 namespace diconsole
 {
     class Program
     {
         static void Main(string[] args)
         {
-	    PythonAnalyzer pa = new PythonAnalyzer();
-	    Console.WriteLine($"An analyzer for language {PythonAnalyzer.PythonAnalysisSource}.");
+	    Implementation.Server s = new Implementation.Server();
+	    // Console.WriteLine($"An analyzer for language {s.pa.PythonAnalysisSource}.");
 
 
 	    // Read JSON directly from a file
