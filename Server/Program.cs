@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
 using Newtonsoft.Json.Linq;
 
 namespace diconsole
