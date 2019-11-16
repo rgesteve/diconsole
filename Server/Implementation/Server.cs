@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+#if false
 using Analyzer;
 
 namespace diconsole.Implementation {
@@ -81,3 +82,4 @@ namespace diconsole.Implementation {
 
     }
 }
+#endif

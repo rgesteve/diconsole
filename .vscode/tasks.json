@@ -7,12 +7,12 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Server/diconsole.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
         },
+        // FIXME: This task references a no-longer existing project file
         {
             "label": "publish",
             "command": "dotnet",
@@ -25,6 +25,7 @@
             ],
             "problemMatcher": "$msCompile"
         },
+        // FIXME: This task references a no-longer existing project file
         {
             "label": "watch",
             "command": "dotnet",
