@@ -5,6 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
 using Newtonsoft.Json.Linq;
+using diconsole.Core;
 
 namespace diconsole
 {

@@ -1,9 +1,9 @@
 using diconsole.Core;
 
-namespace diconsole.Implementation 
+namespace diconsole 
 {
     public interface ICoreShell
     {
-        IServiceCollection Services { get; } 
+        IServiceContainer Services { get; } 
     }
 }
