@@ -1,30 +1,29 @@
 using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+using diconsole.Core;
+
 #if false
 using Analyzer;
+#endif
 
 namespace diconsole.Implementation {
-    public class Server
+    public class Server : IDisposable
     {
+      private readonly DisposableBag _disposableBag = DisposableBag.Create<Server>();
+      private readonly CancellationTokenSource _shutdownCts = new CancellationTokenSource();
+      private readonly IServiceManager _services;
 
-#if false
-      /// <summary>
-      /// Implements ability to execute module reload on the analyzer thread
-      /// </summary>      
-      private sealed class ReloadModuleQueueItem : IAnalyzable
-      {
-          private readonly Server _server;
-      }
-#endif
+      private bool _initialized;
 
       // If null all files must be added manually
       private string _rootDir;
-      internal PythonAnalyzer Analyzer { get; private set; }
 
-      public Server()
+      public Server(IServiceManager services)
       {
+            _services = services;
       }
 
 #if false
@@ -45,7 +44,6 @@ namespace diconsole.Implementation {
 	  }
 #endif
       }
-#endif
 
       public Task<bool> UnloadFileAsync(Uri documentUri)
       {
@@ -53,7 +51,6 @@ namespace diconsole.Implementation {
           return Task.FromResult(false);
       }
 
-#if false
       public void SetSearchPaths(IEnumerable<string> searchPaths) => Analyzer.SetSearchPaths(searchPaths /* .MaybeEnumerate() */ );
       // ./Analysis/Engine/Impl/Infrastructure/Extensions/EnumerableExtensions.cs:26 -- think this is where MaybeEnumerate is defined
 
@@ -62,24 +59,21 @@ namespace diconsole.Implementation {
           // _disposableBag.ThrowIfDisposed();
 	  Analyzer = await AnalysisQueue.ExecuteInQueueAsync( ct => CreateAnalyzer(), AnalysisPriority.High );
       }
-#endif
 
-#if false
       private T ActivateObject<T>(string assemblyName, string typeName, Dictionary<string, object> properties)
       {
           if (string.IsNullOrEmpty(assemblyName) || string.IsNullOrEmpty(typeName)) {
 	      return default(T);
 	  }
       }
-#endif
 
-#if false
       private async Task<PythonAnalyzer> CreateAnalyzer(/* PythonInitializationOptions.Interpreter interpreter, CancellationToken token */)
       {
           var factory = ActivateObject<IPythonInterpreterFactory>(interpreter.assembly, interpreter.typeName, interpreter.properties) ?? new AstPythonInterpreterFactory(interpreter.properties);
       }
 #endif
 
+      public void Dispose() => _disposableBag.TryDispose();
+
     }
 }
-#endif
