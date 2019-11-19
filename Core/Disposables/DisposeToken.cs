@@ -32,5 +32,15 @@ namespace diconsole.Core // Microsoft.Python.Core
         }
 
         private ObjectDisposedException CreateException() => new ObjectDisposedException(_type.Name, $"{_type.Name} instance is disposed.");
+
+        public bool TryMarkDisposed()
+        {
+            if (Interlocked.Exchange(ref _disposed, 1) == 1) {
+                return false;
+            }
+            _cts.Cancel();
+            _cts.Dispose();
+            return true;
+        }
     }
 }

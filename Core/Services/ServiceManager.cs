@@ -39,12 +39,10 @@ namespace diconsole.Core // Microsoft.Python.Core
                 return null;
             }
             type = type ?? typeof(T);
-            #if false
             if (!_s.TryGetValue(type, out var value)) {
-                value = _s.FirstOrDefault( kvp => type.GetTypeInfo().IsAssignableFrom );
+                value = _s.FirstOrDefault( kvp => type.GetTypeInfo().IsAssignableFrom(kvp.Key) );
             }
-            #endif
-            return null;
+            return (T)((value as T) ?? (value as Lazy<object>)?.Value);
         }
 
         public void RemoveService(object service)
@@ -54,9 +52,24 @@ namespace diconsole.Core // Microsoft.Python.Core
 
         public IEnumerable<Type> AllServices => _s.Keys.ToList();
 
+        private object CheckDisposed(object service)
+        {
+            if (_disposeToken.IsDisposed) {
+                (service as IDisposable)?.Dispose();
+                _disposeToken.ThrowIfDisposed();
+            }
+            return service;
+        }
+
         public void Dispose()
         {
-            // TODO
+            foreach (var service in _s.Values) {
+                if (service is Lazy<object> lazy && lazy.IsValueCreated) {
+                    (lazy.Value as IDisposable)?.Dispose();
+                } else {
+                    (service as IDisposable)?.Dispose();
+                }
+            }
         }
     }    
 

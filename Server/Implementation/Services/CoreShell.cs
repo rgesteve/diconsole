@@ -3,16 +3,32 @@ using diconsole.Core;
 
 namespace diconsole.Server.Services
 {
-    internal sealed class CoreShell : IDisposable
+    internal sealed class CoreShell : ICoreShell, IDisposable
     {
         private static CoreShell _instance;
-        public static CoreShell current => _instance;
+        public static CoreShell Current => _instance;
 
-        IServiceManager ServiceManager { get; } = new ServiceManager();
+        public IServiceManager ServiceManager { get; } = new ServiceManager();
+
+        // Implements ICoreShell
+        public IServiceContainer Services => ServiceManager;
+
+        public static IDisposable Create()
+        {
+            Check.InvalidOperation(() => _instance == null);
+            _instance = new CoreShell();
+            return _instance;
+        }
+
+        private CoreShell()
+        {
+            ServiceManager.AddService(this);
+        }
 
         public void Dispose()
         {
-            // empty
+            ServiceManager?.RemoveService(this);
+            ServiceManager?.Dispose();
         }
     }
 }
