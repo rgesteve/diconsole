@@ -2,6 +2,7 @@
 using System.IO;
 
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Newtonsoft.Json;
@@ -42,6 +43,11 @@ namespace diconsole
 			}
 #endif
 #endif
+			IConfigurationBuilder cfgBldr = new ConfigurationBuilder();
+			cfgBldr.AddJsonFile("config.json");
+			IConfigurationRoot config = cfgBldr.Build();
+
+			Console.WriteLine($"Should be setting backend to {config["preferredBackend"]}");
 	    
             Console.WriteLine("Done!");
 		    Environment.Exit(0);
