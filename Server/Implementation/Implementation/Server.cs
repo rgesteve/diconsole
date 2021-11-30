@@ -3,7 +3,9 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+#if false
 using diconsole.Core;
+#endif
 
 #if false
 using Analyzer;
@@ -12,6 +14,7 @@ using Analyzer;
 namespace diconsole.Implementation {
     public class Server : IDisposable
     {
+#if false
       private readonly DisposableBag _disposableBag = DisposableBag.Create<Server>();
       private readonly CancellationTokenSource _shutdownCts = new CancellationTokenSource();
       private readonly IServiceManager _services;
@@ -72,8 +75,15 @@ namespace diconsole.Implementation {
           var factory = ActivateObject<IPythonInterpreterFactory>(interpreter.assembly, interpreter.typeName, interpreter.properties) ?? new AstPythonInterpreterFactory(interpreter.properties);
       }
 #endif
+#endif
 
+#if false
       public void Dispose() => _disposableBag.TryDispose();
+#else
+      public void Dispose() {
+          /* empty */
+      }
+#endif
 
     }
 }

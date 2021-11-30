@@ -9,11 +9,15 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <!--
     <PackageReference Include="StreamJsonRpc" Version="2.2.34" />
+    -->
   </ItemGroup>
 
+<!--
   <ItemGroup>
     <ProjectReference Include="..\..\Core\diconsole.Core.csproj" />
   </ItemGroup>
+  -->
 
 </Project>

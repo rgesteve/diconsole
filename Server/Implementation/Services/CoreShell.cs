@@ -1,8 +1,11 @@
 using System;
+#if false
 using diconsole.Core;
+#endif
 
 namespace diconsole.Server.Services
 {
+    #if false
     internal sealed class CoreShell : ICoreShell, IDisposable
     {
         private static CoreShell _instance;
@@ -31,4 +34,5 @@ namespace diconsole.Server.Services
             ServiceManager?.Dispose();
         }
     }
+    #endif
 }

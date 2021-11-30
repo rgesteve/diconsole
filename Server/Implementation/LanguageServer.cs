@@ -1,16 +1,18 @@
 using System;
 using System.Threading;
 
+#if false
 using StreamJsonRpc;
 
 using diconsole.Core;
 //using diconsole.Implementation;
+#endif
 
 namespace diconsole.Implementation
 {
     public sealed class LanguageServer : IDisposable
     {
-
+#if false
 		private Server _server;
 #if false
         private readonly object _lock = new object();
@@ -31,7 +33,7 @@ namespace diconsole.Implementation
 
 			return _sessionTokenSource.Token;
 		}
-
+#endif
 		public void Dispose()
 		{
 		  // TODO

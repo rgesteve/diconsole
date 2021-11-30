@@ -5,10 +5,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 
 using Newtonsoft.Json;
+#if false
 using StreamJsonRpc;
 
 using diconsole.Core;
 using diconsole.Server.Services;
+#endif
 
 namespace diconsole
 {
@@ -30,6 +32,7 @@ namespace diconsole
 	   		Test(processId);
 	    	Test(capabilities);
 #else
+#if false
 			using (CoreShell.Create()) {
 				var services = CoreShell.Current.ServiceManager;
 				var messageFormatter = new JsonMessageFormatter();
@@ -37,6 +40,7 @@ namespace diconsole
 				messageFormatter.JsonSerializer.ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor;
 				messageFormatter.JsonSerializer.Converters.Add(new UriConverter());								
 			}
+#endif
 #endif
 	    
             Console.WriteLine("Done!");
@@ -55,6 +59,7 @@ namespace diconsole
 #endif
     }
 
+#if false
 	sealed class UriConverter : JsonConverter
 	{
 		public override bool CanConvert(Type objectType) => objectType == typeof(Uri);
@@ -87,4 +92,5 @@ namespace diconsole
 			}
 		}
 	}
+#endif
 }
