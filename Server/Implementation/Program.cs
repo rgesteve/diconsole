@@ -43,9 +43,10 @@ namespace diconsole
 			}
 #endif
 #endif
-			IConfigurationBuilder cfgBldr = new ConfigurationBuilder();
-			cfgBldr.AddJsonFile("config.json");
-			IConfigurationRoot config = cfgBldr.Build();
+			IConfigurationRoot config = new ConfigurationBuilder()
+						.AddJsonFile("config.json") // the order the providers are added to the builder denotes priority of the config key-values (later takes precedence)
+						.AddCommandLine(args)
+						.Build();
 
 			Console.WriteLine($"Should be setting backend to {config["preferredBackend"]}");
 	    
