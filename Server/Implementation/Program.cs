@@ -1,6 +1,9 @@
 ﻿using System;
 using System.IO;
 
+using System.Threading;
+using System.Threading.Tasks;
+
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +20,7 @@ namespace diconsole
 {
     class Program
     {
-        static void Main(string[] args)
+        static /* void */ async Task Main(string[] args)
         {
 #if false
 	    	Implementation.Server s = new Implementation.Server();
