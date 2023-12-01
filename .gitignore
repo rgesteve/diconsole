@@ -343,3 +343,6 @@ ASALocalRun/
 
 # Visual Studio support
 .vs/
+
+# Emacs backup
+*~
