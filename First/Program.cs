@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Http;
 
 namespace First;
 
@@ -16,9 +17,7 @@ class Program
         //configLogging.ClearProviders();
       })
       .ConfigureServices(services => {
-        // Console.WriteLine("Testing...");
-        //services.AddHttpClient();
-	//services.AddTelemetryHealthCheckPublisher();
+        services.AddHttpClient();
       })
       .Build().Run();
       Console.WriteLine("Hello, World!");
