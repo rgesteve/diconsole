@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace First;
 
@@ -10,8 +13,14 @@ class Program
     {
       Host.CreateDefaultBuilder(args)
       .ConfigureLogging((_, configLogging) => {
-        // configLogging.ClearProviders();
-      }).Build().Run();
+        //configLogging.ClearProviders();
+      })
+      .ConfigureServices(services => {
+        // Console.WriteLine("Testing...");
+        //services.AddHttpClient();
+	//services.AddTelemetryHealthCheckPublisher();
+      })
+      .Build().Run();
       Console.WriteLine("Hello, World!");
     }
 }
